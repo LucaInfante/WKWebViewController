@@ -168,7 +168,6 @@ open class WKWebViewController: UIViewController {
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
-        webView.allowsBackForwardNavigationGestures = false
         webView.isMultipleTouchEnabled = true
         
         webView.addObserver(self, forKeyPath: estimatedProgressKeyPath, options: .new, context: nil)
