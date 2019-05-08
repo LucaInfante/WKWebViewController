@@ -139,11 +139,9 @@ open class WKWebViewController: UIViewController {
         }
     }()
     
-/*    lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
+    lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
-    }()*/
-    
-    lazy fileprivate var doneBarButtonItem: UIBarButtonItem = UIBarButtonItem()
+    }()
     
     lazy fileprivate var flexibleSpaceBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -331,7 +329,7 @@ fileprivate extension WKWebViewController {
     }
     
     func addBarButtonItems() {
-/*        func barButtonItem(_ type: BarButtonItemType) -> UIBarButtonItem? {
+        func barButtonItem(_ type: BarButtonItemType) -> UIBarButtonItem? {
             switch type {
             case .back:
                 return backBarButtonItem
@@ -417,11 +415,11 @@ fileprivate extension WKWebViewController {
                 return barButtonItem
             }
             return UIBarButtonItem()
-        }, animated: true)*/
+        }, animated: true)
     }
     
     func updateBarButtonItems() {
-/*        backBarButtonItem.isEnabled = webView?.canGoBack ?? false
+        backBarButtonItem.isEnabled = webView?.canGoBack ?? false
         forwardBarButtonItem.isEnabled = webView?.canGoForward ?? false
         
         let updateReloadBarButtonItem: (UIBarButtonItem, Bool) -> UIBarButtonItem = {
@@ -451,7 +449,7 @@ fileprivate extension WKWebViewController {
         navigationItem.rightBarButtonItems = navigationItem.rightBarButtonItems?.map {
             barButtonItem -> UIBarButtonItem in
             return updateReloadBarButtonItem(barButtonItem, isLoading)
-        }*/
+        }
     }
     
     func setUpState() {
