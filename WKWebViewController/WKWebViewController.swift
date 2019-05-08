@@ -86,7 +86,6 @@ open class WKWebViewController: UIViewController {
     }
     
     open var websiteTitleInNavigationBar = true
-    open var rightAndLeftCustom = false
     open var doneBarButtonItemPosition: NavigationBarPosition = .right
     open var leftNavigaionBarItemTypes: [BarButtonItemType] = []
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
@@ -372,10 +371,7 @@ fileprivate extension WKWebViewController {
                         return false
                     }
                 }) {
-                    if rightAndLeftCustom == false
-                    {
-                        leftNavigaionBarItemTypes.insert(.done, at: 0)
-                    }
+                    leftNavigaionBarItemTypes.insert(.done, at: 0)
                 }
             case .right:
                 if !rightNavigaionBarItemTypes.contains(where: { type in
@@ -386,10 +382,7 @@ fileprivate extension WKWebViewController {
                         return false
                     }
                 }) {
-                    if rightAndLeftCustom == false
-                    {
-                        rightNavigaionBarItemTypes.insert(.done, at: 0)
-                    }
+                    rightNavigaionBarItemTypes.insert(.done, at: 0)
                 }
             case .none:
                 break
