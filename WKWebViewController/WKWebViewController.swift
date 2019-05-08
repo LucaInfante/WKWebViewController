@@ -91,8 +91,6 @@ open class WKWebViewController: UIViewController {
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
     open var toolbarItemTypes: [BarButtonItemType] = [.back, .forward, .reload, .activity]
     
-    open var rightCustom: UIBarButtonItem = UIBarButtonItem()
-    open var leftCustom: UIBarButtonItem = UIBarButtonItem()
     open var backBarButtonItemImage: UIImage?
     open var forwardBarButtonItemImage: UIImage?
     open var reloadBarButtonItemImage: UIImage?
@@ -388,9 +386,6 @@ fileprivate extension WKWebViewController {
                 break
             }
         }
-        
-        navigationItem.leftBarButtonItem = leftCustom
-        navigationItem.rightBarButtonItem = rightCustom
         
         navigationItem.leftBarButtonItems = leftNavigaionBarItemTypes.map {
             barButtonItemType in
