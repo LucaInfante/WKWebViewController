@@ -189,7 +189,7 @@ open class WKWebViewController: UIViewController {
         
         self.setUpProgressView()
         self.setUpConstraints()
-        self.addBarButtonItems()
+//        self.addBarButtonItems()
         
         if let s = self.source {
             self.load(source: s)
