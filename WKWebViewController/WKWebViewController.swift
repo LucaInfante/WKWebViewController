@@ -143,6 +143,8 @@ open class WKWebViewController: UIViewController {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
     }()*/
     
+    lazy fileprivate var doneBarButtonItem: UIBarButtonItem = UIBarButtonItem()
+    
     lazy fileprivate var flexibleSpaceBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     }()
