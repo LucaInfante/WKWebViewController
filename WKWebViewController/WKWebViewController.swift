@@ -105,7 +105,7 @@ open class WKWebViewController: UIViewController {
     
     lazy fileprivate var originalUserAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")
     
-    lazy var backBarButtonItem: UIBarButtonItem = {
+    open var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
         return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
     }()
@@ -139,7 +139,7 @@ open class WKWebViewController: UIViewController {
         }
     }()
     
-    lazy var doneBarButtonItem: UIBarButtonItem = {
+    open var doneBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
     }()
     
