@@ -86,11 +86,14 @@ open class WKWebViewController: UIViewController {
     }
     
     open var websiteTitleInNavigationBar = true
+    open var rightAndLeftCustom = false
     open var doneBarButtonItemPosition: NavigationBarPosition = .right
     open var leftNavigaionBarItemTypes: [BarButtonItemType] = []
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
     open var toolbarItemTypes: [BarButtonItemType] = [.back, .forward, .reload, .activity]
     
+    open var rightCustom: UIBarButtonItem?
+    open var leftCustom: UIBarButtonItem?
     open var backBarButtonItemImage: UIImage?
     open var forwardBarButtonItemImage: UIImage?
     open var reloadBarButtonItemImage: UIImage?
@@ -345,14 +348,23 @@ fileprivate extension WKWebViewController {
                 return doneBarButtonItem
             case .flexibleSpace:
                 return flexibleSpaceBarButtonItem
-            case .custom(let icon, let title, let action):
+            case .custom(let icon, let title, let action, let totalCustom):
                 let item: BlockBarButtonItem
-                if let icon = icon {
-                    item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
-                } else {
-                    item = BlockBarButtonItem(title: title, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                
+                if totalCustom = nil
+                {
+                    if let icon = icon {
+                        item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                    } else {
+                        item = BlockBarButtonItem(title: title, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                    }
+                    item.block = action
                 }
-                item.block = action
+                else
+                {
+                    item = totalCustom
+                    item.block = action
+                }
                 return item
             }
         }
@@ -368,7 +380,10 @@ fileprivate extension WKWebViewController {
                         return false
                     }
                 }) {
-                    leftNavigaionBarItemTypes.insert(.done, at: 0)
+                    if rightAndLeftCustom == false
+                    {
+                        leftNavigaionBarItemTypes.insert(.done, at: 0)
+                    }
                 }
             case .right:
                 if !rightNavigaionBarItemTypes.contains(where: { type in
@@ -379,7 +394,10 @@ fileprivate extension WKWebViewController {
                         return false
                     }
                 }) {
-                    rightNavigaionBarItemTypes.insert(.done, at: 0)
+                    if rightAndLeftCustom == false
+                    {
+                        rightNavigaionBarItemTypes.insert(.done, at: 0)
+                    }
                 }
             case .none:
                 break
