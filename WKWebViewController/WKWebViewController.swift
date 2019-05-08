@@ -92,8 +92,8 @@ open class WKWebViewController: UIViewController {
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
     open var toolbarItemTypes: [BarButtonItemType] = [.back, .forward, .reload, .activity]
     
-    open var rightCustom: UIBarButtonItem?
-    open var leftCustom: UIBarButtonItem?
+    open var rightCustom: UIBarButtonItem = nil
+    open var leftCustom: UIBarButtonItem = nil
     open var backBarButtonItemImage: UIImage?
     open var forwardBarButtonItemImage: UIImage?
     open var reloadBarButtonItemImage: UIImage?
@@ -348,23 +348,15 @@ fileprivate extension WKWebViewController {
                 return doneBarButtonItem
             case .flexibleSpace:
                 return flexibleSpaceBarButtonItem
-            case .custom(let icon, let title, let action, let totalCustom):
+            case .custom(let icon, let title, let action):
                 let item: BlockBarButtonItem
                 
-                if totalCustom = nil
-                {
-                    if let icon = icon {
-                        item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
-                    } else {
-                        item = BlockBarButtonItem(title: title, style: .plain, target: self, action: #selector(customDidClick(sender:)))
-                    }
-                    item.block = action
+                if let icon = icon {
+                    item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                } else {
+                    item = BlockBarButtonItem(title: title, style: .plain, target: self, action: #selector(customDidClick(sender:)))
                 }
-                else
-                {
-                    item = totalCustom
-                    item.block = action
-                }
+                item.block = action
                 return item
             }
         }
@@ -403,6 +395,9 @@ fileprivate extension WKWebViewController {
                 break
             }
         }
+        
+        navigationItem.leftBarButtonItem = leftCustom
+        navigationItem.rightBarButtonItem = rightCustom
         
         navigationItem.leftBarButtonItems = leftNavigaionBarItemTypes.map {
             barButtonItemType in
