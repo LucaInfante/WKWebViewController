@@ -168,6 +168,7 @@ open class WKWebViewController: UIViewController {
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
+        webView.allowsBackForwardNavigationGestures = true
         webView.isMultipleTouchEnabled = true
         
         webView.addObserver(self, forKeyPath: estimatedProgressKeyPath, options: .new, context: nil)
@@ -332,7 +333,14 @@ fileprivate extension WKWebViewController {
         func barButtonItem(_ type: BarButtonItemType) -> UIBarButtonItem? {
             switch type {
             case .customBarButtonItem(let customItem):
-                return customItem
+                if customItem == nil
+                {
+                    return UIBarButtomItem()
+                }
+                else
+                {
+                    return customItem
+                }
             case .back:
                 return backBarButtonItem
             case .forward:
@@ -349,7 +357,6 @@ fileprivate extension WKWebViewController {
                 return flexibleSpaceBarButtonItem
             case .custom(let icon, let title, let action):
                 let item: BlockBarButtonItem
-                
                 if let icon = icon {
                     item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
                 } else {
