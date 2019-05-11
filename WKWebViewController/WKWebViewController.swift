@@ -53,7 +53,6 @@ open class WKWebViewController: UIViewController {
     /// use `source` instead
     open internal(set) var url: URL?
     open var tintColor: UIColor?
-    open var customDone = false
     open var allowsFileURL = true
     open var delegate: WKWebViewControllerDelegate?
     open var bypassedSSLHosts: [String]?
@@ -353,14 +352,8 @@ fileprivate extension WKWebViewController {
             case .activity:
                 return activityBarButtonItem
             case .done:
-                if customDone == true
-                {
-                    return UIBarButtonItem()
-                }
-                else
-                {
-                    return doneBarButtonItem
-                }
+                return UIBarButtonItem()
+                //return doneBarButtonItem
             case .flexibleSpace:
                 return flexibleSpaceBarButtonItem
             case .custom(let icon, let title, let action):
