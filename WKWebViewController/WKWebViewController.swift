@@ -335,7 +335,7 @@ fileprivate extension WKWebViewController {
             case .customBarButtonItem(let customItem):
                 if customItem == nil
                 {
-                    return UIBarButtomItem()
+                    return UIBarButtonItem()
                 }
                 else
                 {
