@@ -331,7 +331,7 @@ fileprivate extension WKWebViewController {
     func addBarButtonItems() {
         func barButtonItem(_ type: BarButtonItemType) -> UIBarButtonItem? {
             switch type {
-            case customBarButtonItem(customItem: UIBarButtonItem):
+            case .customBarButtonItem(let customItem):
                 return customItem
             case .back:
                 return backBarButtonItem
