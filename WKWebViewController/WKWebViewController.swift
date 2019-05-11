@@ -94,7 +94,6 @@ open class WKWebViewController: UIViewController {
     open var customLeftUBBI: UIBarButtonItem?
     open var customRightUBBI: UIBarButtonItem?
     open var backBarButtonItemImage: UIImage?
-    open var backBarButtonItemImage: UIImage?
     open var forwardBarButtonItemImage: UIImage?
     open var reloadBarButtonItemImage: UIImage?
     open var stopBarButtonItemImage: UIImage?
@@ -112,7 +111,7 @@ open class WKWebViewController: UIViewController {
         let bundle = Bundle(for: WKWebViewController.self)
         if customLeftUBBI != nil
         {
-            return customLeftUBBI
+            return customLeftUBBI!
         }
         else
         {
@@ -152,7 +151,7 @@ open class WKWebViewController: UIViewController {
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
         if customRightUBBI != nil
         {
-            return customRightUBBI
+            return customRightUBBI!
         }
         else
         {
