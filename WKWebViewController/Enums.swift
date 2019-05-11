@@ -45,6 +45,7 @@ public enum BarButtonItemType {
     case activity
     case done
     case flexibleSpace
+    case customBarButtonItem(customItem: UIBarButtonItem)
     case custom(icon: UIImage?, title: String?, action: (WKWebViewController) -> Void)
 }
 
