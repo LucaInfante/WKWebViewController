@@ -91,6 +91,9 @@ open class WKWebViewController: UIViewController {
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
     open var toolbarItemTypes: [BarButtonItemType] = [.back, .forward, .reload, .activity]
     
+    open var customLeftUBBI: UIBarButtonItem?
+    open var customRightUBBI: UIBarButtonItem?
+    open var backBarButtonItemImage: UIImage?
     open var backBarButtonItemImage: UIImage?
     open var forwardBarButtonItemImage: UIImage?
     open var reloadBarButtonItemImage: UIImage?
@@ -107,7 +110,14 @@ open class WKWebViewController: UIViewController {
     
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
+        if customLeftUBBI != nil
+        {
+            return customLeftUBBI
+        }
+        else
+        {
+            return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var forwardBarButtonItem: UIBarButtonItem = {
@@ -140,7 +150,14 @@ open class WKWebViewController: UIViewController {
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
+        if customRightUBBI != nil
+        {
+            return customRightUBBI
+        }
+        else
+        {
+            return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var flexibleSpaceBarButtonItem: UIBarButtonItem = {
