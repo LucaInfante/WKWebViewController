@@ -351,8 +351,16 @@ fileprivate extension WKWebViewController {
                 return stopBarButtonItem
             case .activity:
                 return activityBarButtonItem
-            case .done:
-                return doneBarButtonItem
+            case .done(let customItem):
+                if customItem == nil
+                {
+                    return UIBarButtonItem()
+                }
+                else
+                {
+                    return customItem
+                }
+//                return doneBarButtonItem
             case .flexibleSpace:
                 return flexibleSpaceBarButtonItem
             case .custom(let icon, let title, let action):
