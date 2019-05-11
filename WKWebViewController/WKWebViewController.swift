@@ -109,9 +109,10 @@ open class WKWebViewController: UIViewController {
     
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        if customLeftUBBI != nil
+        print("Me3da \(self.customLeftUBBI)")
+        if self.customLeftUBBI != nil
         {
-            return customLeftUBBI!
+            return self.customLeftUBBI!
         }
         else
         {
@@ -149,9 +150,10 @@ open class WKWebViewController: UIViewController {
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
-        if customRightUBBI != nil
+        print("Me3da \(self.customLeftUBBI)")
+        if self.customRightUBBI != nil
         {
-            return customRightUBBI!
+            return self.customRightUBBI!
         }
         else
         {
