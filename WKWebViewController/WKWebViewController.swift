@@ -109,14 +109,7 @@ open class WKWebViewController: UIViewController {
     
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        if self.customLeftUBBI != nil
-        {
-            return self.customLeftUBBI!
-        }
-        else
-        {
-            return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
-        }
+        return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
     }()
     
     lazy fileprivate var forwardBarButtonItem: UIBarButtonItem = {
@@ -149,14 +142,7 @@ open class WKWebViewController: UIViewController {
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
-        if self.customRightUBBI != nil
-        {
-            return self.customRightUBBI!
-        }
-        else
-        {
-            return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
-        }
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
     }()
     
     lazy fileprivate var flexibleSpaceBarButtonItem: UIBarButtonItem = {
