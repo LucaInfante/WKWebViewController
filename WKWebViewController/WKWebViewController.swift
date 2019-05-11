@@ -141,14 +141,7 @@ open class WKWebViewController: UIViewController {
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
-        if customDone == true
-        {
-            return UIBarButtonItem()
-        }
-        else
-        {
-            return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
-        }
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
     }()
     
     lazy fileprivate var flexibleSpaceBarButtonItem: UIBarButtonItem = {
@@ -360,7 +353,14 @@ fileprivate extension WKWebViewController {
             case .activity:
                 return activityBarButtonItem
             case .done:
-                return doneBarButtonItem
+                if customDone == true
+                {
+                    return UIBarButtonItem()
+                }
+                else
+                {
+                    return doneBarButtonItem
+                }
             case .flexibleSpace:
                 return flexibleSpaceBarButtonItem
             case .custom(let icon, let title, let action):
