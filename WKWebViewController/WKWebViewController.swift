@@ -53,6 +53,7 @@ open class WKWebViewController: UIViewController {
     /// use `source` instead
     open internal(set) var url: URL?
     open var tintColor: UIColor?
+    open var customDone = false
     open var allowsFileURL = true
     open var delegate: WKWebViewControllerDelegate?
     open var bypassedSSLHosts: [String]?
@@ -140,7 +141,14 @@ open class WKWebViewController: UIViewController {
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
+        if customDone == true
+        {
+            return UIBarButtonItem()
+        }
+        else
+        {
+            return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var flexibleSpaceBarButtonItem: UIBarButtonItem = {
