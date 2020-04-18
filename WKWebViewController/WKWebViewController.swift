@@ -69,7 +69,7 @@ open class WKWebViewController: UIViewController {
     
     open var userAgent: String? {
         didSet {
-            guard let originalUserAgent = originalUserAgent, let userAgent = userAgent else {
+            guard let userAgent = userAgent else {
                 return
             }
             webView?.customUserAgent = [originalUserAgent, userAgent].joined(separator: " ")
@@ -103,7 +103,7 @@ open class WKWebViewController: UIViewController {
     fileprivate var previousNavigationBarState: (tintColor: UIColor, hidden: Bool) = (.black, false)
     fileprivate var previousToolbarState: (tintColor: UIColor, hidden: Bool) = (.black, false)
     
-    lazy fileprivate var originalUserAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")
+    lazy fileprivate var originalUserAgent = "navigator.userAgent"
     
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
